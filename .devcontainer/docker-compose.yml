@@ -1,0 +1,25 @@
+services:
+  web:
+    # Dockerfile opcional, aquí usaremos una imagen base de Python con debugpy
+    build:
+      context: ..
+      dockerfile: .devcontainer/Dockerfile
+    volumes:
+      - ..:/workspace:cached
+    ports:
+      - "8000:8000"    # Puerto para acceder a FastAPI
+      - "5678:5678"    # Puerto para debug (debugpy)
+    # Dependencias para asegurarnos de que Redis esté levantado cuando se inicie "web"
+    depends_on:
+      - redis
+    # Variables de entorno de ejemplo si las requieres
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+
+  redis:
+    image: redis:latest
+    container_name: my_redis
+    ports:
+      - "6379:6379"

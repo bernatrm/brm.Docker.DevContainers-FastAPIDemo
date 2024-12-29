@@ -1,0 +1,27 @@
+{
+	"name": "FastAPI + Redis DevContainer",
+	"dockerComposeFile": "docker-compose.yml",
+	"service": "web",
+	"workspaceFolder": "/workspace",
+
+	
+	"customizations": {
+		"vscode": {
+			// Instala extensiones de Python y otras herramientas
+			"extensions": [
+				"ms-python.python",
+				"ms-python.vscode-pylance",
+				"ms-toolsai.jupyter"
+			],
+			// Opciones de configuración
+			"settings": {
+				"python.defaultInterpreterPath": "/usr/local/bin/python",
+				"python.analysis.autoImportCompletions": true,
+				"python.analysis.indexing": true
+			}
+		}
+	},
+
+	// (Opcional) Si usas postCreateCommand, puedes instalar dependencias
+	"postCreateCommand": "pip install --upgrade pip && pip install -r app/requirements.txt"
+}
