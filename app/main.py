@@ -13,7 +13,7 @@ print("Debugger is active. Attach VS Code to port 5678 to debug.")
 
 @app.get("/")
 def read_root():
-    return {"Hello": "World"}
+    return {"Message": "Hello World, from DevContainers!"}
 
 @app.get("/hits")
 def read_root():
